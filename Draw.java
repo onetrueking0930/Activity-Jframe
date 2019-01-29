@@ -6,16 +6,21 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 public class Draw extends JComponent{
+
     private BufferedImage image;
+    private BufferedImage backgroundImage;
     public URL resource = getClass().getResource("run0.png");
       public int x = 30;
       public int y = 30;
       public int state = 0;
-    public Draw(){
+    
+      public Draw(){
         try{
             image = ImageIO.read(resource);
+            backgroundImage = ImageIO.read(getClass().getResource("background.jpg"));
+            
         }
-            catch(IOException e){
+        catch(IOException e){
             e.printStackTrace();
         }
     }
@@ -46,6 +51,39 @@ public class Draw extends JComponent{
             catch(IOException e){
             e.printStackTrace();
         }
+        }
+        public void attackAnimation(){
+        Thread thread1 = new Thread(new Runnable(){
+            public void run(){
+                for(int ctr = 0; ctr < 5; ctr++){
+                    try {
+                        if(ctr==4){
+                            resource = getClass().getResource("run0.png");
+                        }
+                        else{
+                            resource = getClass().getResource("attack"+ctr+".png");
+                        }
+                        
+                        try{
+                            image = ImageIO.read(resource);
+                        }
+                        catch(IOException e){
+                            e.printStackTrace();
+                        }
+                        repaint();
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        thread1.start();
+  
+ }
+
+    public void attack(){
+        attackAnimation();
     }
       public void moveUp(){
       y = y - 20;
