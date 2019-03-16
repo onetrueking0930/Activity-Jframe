@@ -1,10 +1,3 @@
-/*import javax.swing.JComponent;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.net.URL;*/
 import javax.swing.JComponent;
 import javax.swing.Timer;
 import java.awt.Color;
@@ -13,6 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.util.Random;
 
 public class Draw extends JComponent{
 
@@ -63,7 +57,7 @@ public class Draw extends JComponent{
         try{
 
             image = ImageIO.read(resource);
-            backgroundImage = ImageIO.read(getClass().getResource("BG City.jpg"));
+            backgroundImage = ImageIO.read(getClass().getResource("BG City1.jpg"));
         }
         catch(IOException e){
             e.printStackTrace();   
@@ -321,13 +315,13 @@ public void checkCollision()
     
 }
 
-      public void paintComponent(Graphics g){
+      /*public void paintComponent(Graphics g){
       super.paintComponent(g);
       g.setColor(Color.YELLOW);
       g.drawImage(backgroundImage, 0, 0, this);
       g.drawImage(image, x, y, this);
 
-      g.drawImage(monster1.image, monster1.xPos, monster1.yPos, this);
+      g.drawImage(monsters.image, monsters.xPos, monsters.yPos, this);
 
-    }
+    }*/
   }
